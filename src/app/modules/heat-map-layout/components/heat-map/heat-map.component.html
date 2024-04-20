@@ -1,0 +1,22 @@
+<div class="heatmap">
+  <div class="filter-container">
+    <label>Time Range:</label>
+    <input type="time" [(ngModel)]="startTime">
+    <span>to</span>
+    <input type="time" [(ngModel)]="endTime">
+
+    <label>Intensity Range:</label>
+    <input type="number" [(ngModel)]="minIntensity" placeholder="Min">
+    <span>to &nbsp;</span>
+    <input type="number" [(ngModel)]="maxIntensity" placeholder="Max">
+
+    <button (click)="applyFilter()">Apply Filter</button>
+    <button (click)="resetFilter()">Reset Filter</button>
+  </div>
+
+  <div class="row" *ngFor="let data of filteredHeatmapData">
+    <div class="frequency">{{ data.frequency }}</div>
+    <div class="cell" [style.background-color]="getColor(data.frequency)"></div>
+    <div class="timestamp">{{ data.timestamp | date: 'shortTime' }}</div>
+  </div>
+</div>
